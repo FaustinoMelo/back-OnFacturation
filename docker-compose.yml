@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: backonfacturation-app
+    restart: always
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: backonfacturation-nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.3
+    container_name: backonfacturation-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: back_onfacturation
+      MYSQL_USER: back_user
+      MYSQL_PASSWORD: back_pass
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+  redis:
+    image: redis:7
+    container_name: backonfacturation-redis
+    restart: always
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    volumes:
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6380:6379"
+
+volumes:
+  mysqldata:
