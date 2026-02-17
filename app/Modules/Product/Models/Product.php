@@ -2,19 +2,25 @@
 
 namespace App\Modules\Product\Models;
 
+use Database\Factories\ProductFactory;
 use App\Enums\ProductType;
 use App\Models\System\Company;
 use App\Models\Tenant\Category;
 use App\Modules\Tax\Models\Tax;
 use App\Models\Traits\BelongsToTenant;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use BelongsToTenant;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes, BelongsToTenant;
+
+    protected static function newFactory(): ProductFactory
+    {
+        return ProductFactory::new();
+    }
 
     protected $fillable = [
         'company_id',

@@ -2,13 +2,22 @@
 
 namespace App\Models\System;
 
+use Database\Factories\CompanyFactory;
 use App\Enums\SubscriptionPlan;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
+    use HasFactory;
+
+    protected static function newFactory(): CompanyFactory
+    {
+        return CompanyFactory::new();
+    }
+
     protected $fillable = [
         'name',
         'tax_id',
@@ -56,7 +65,7 @@ class Company extends Model
 
     public function invoices(): HasMany
     {
-        return $this->hasMany(\App\Modules\Invoice\Models\Invoice::class);
+        return $this->hasMany(\App\Models\Tenant\Invoice::class);
     }
 }
 

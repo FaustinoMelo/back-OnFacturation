@@ -2,11 +2,13 @@
 
 namespace App\Modules\Invoice\Models;
 
+use Database\Factories\InvoiceFactory;
 use App\Enums\InvoiceStatus;
 use App\Enums\InvoiceType;
 use App\Models\System\Company;
 use App\Models\Traits\BelongsToTenant;
 use App\Modules\Customer\Models\Customer;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,8 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invoice extends Model
 {
-    use BelongsToTenant;
-    use SoftDeletes;
+    use HasFactory, BelongsToTenant, SoftDeletes;
+
+    protected static function newFactory(): InvoiceFactory
+    {
+        return InvoiceFactory::new();
+    }
 
     protected $fillable = [
         'company_id',
