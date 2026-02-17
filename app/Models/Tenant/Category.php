@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use App\Models\System\Company;
 use App\Models\Traits\BelongsToTenant;
+use App\Modules\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

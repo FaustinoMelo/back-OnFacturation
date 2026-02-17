@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tenant;
+namespace App\Modules\Invoice\Models;
 
 use App\Enums\InvoiceStatus;
 use App\Enums\InvoiceType;
@@ -46,21 +46,24 @@ class Invoice extends Model
         'issued_at',
     ];
 
-    protected $casts = [
-        'status' => InvoiceStatus::class,
-        'type' => InvoiceType::class,
-        'date' => 'date',
-        'due_date' => 'date',
-        'subtotal' => 'decimal:2',
-        'tax_total' => 'decimal:2',
-        'discount_total' => 'decimal:2',
-        'total' => 'decimal:2',
-        'paid_amount' => 'decimal:2',
-        'exchange_rate' => 'decimal:6',
-        'sent_to_tax_authority' => 'boolean',
-        'tax_authority_sent_at' => 'datetime',
-        'issued_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'status' => InvoiceStatus::class,
+            'type' => InvoiceType::class,
+            'date' => 'date',
+            'due_date' => 'date',
+            'subtotal' => 'decimal:2',
+            'tax_total' => 'decimal:2',
+            'discount_total' => 'decimal:2',
+            'total' => 'decimal:2',
+            'paid_amount' => 'decimal:2',
+            'exchange_rate' => 'decimal:6',
+            'sent_to_tax_authority' => 'boolean',
+            'tax_authority_sent_at' => 'datetime',
+            'issued_at' => 'datetime',
+        ];
+    }
 
     public function company(): BelongsTo
     {
@@ -74,22 +77,21 @@ class Invoice extends Model
 
     public function sequence(): BelongsTo
     {
-        return $this->belongsTo(DocumentSequence::class, 'sequence_id');
+        return $this->belongsTo(\App\Models\Tenant\DocumentSequence::class, 'sequence_id');
     }
 
     public function paymentTerm(): BelongsTo
     {
-        return $this->belongsTo(PaymentTerm::class);
+        return $this->belongsTo(\App\Models\Tenant\PaymentTerm::class);
     }
 
     public function items(): HasMany
     {
-        return $this->hasMany(InvoiceItem::class);
+        return $this->hasMany(\App\Models\Tenant\InvoiceItem::class);
     }
 
     public function payments(): HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(\App\Models\Tenant\Payment::class);
     }
 }
-

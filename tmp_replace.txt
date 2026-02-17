@@ -1,0 +1,1 @@
+return $this->belongsTo(\App\Modules\Tax\Models\TaxExemptionReason::class, 'exemption_reason_id');

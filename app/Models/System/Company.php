@@ -46,17 +46,17 @@ class Company extends Model
 
     public function customers(): HasMany
     {
-        return $this->hasMany(\App\Models\Tenant\Customer::class);
+        return $this->hasMany(\App\Modules\Customer\Models\Customer::class);
     }
 
     public function products(): HasMany
     {
-        return $this->hasMany(\App\Models\Tenant\Product::class);
+        return $this->hasMany(\App\Modules\Product\Models\Product::class);
     }
 
     public function invoices(): HasMany
     {
-        return $this->hasMany(\App\Models\Tenant\Invoice::class);
+        return $this->hasMany(\App\Modules\Invoice\Models\Invoice::class);
     }
 }
 

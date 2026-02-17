@@ -1,6 +1,4 @@
-<h2>Seu código OTP</h2>
-<p>Use este código para verificar sua conta:</p>
-
-<h1 style="font-size: 32px; letter-spacing: 4px;">{{ $otp }}</h1>
-
-<p>Válido por 5 minutos.</p>
+<body style="background-color: #000000e6;">
+    
+    <h2 style="color: purple">succesfuly laravel </h2>
+</body>

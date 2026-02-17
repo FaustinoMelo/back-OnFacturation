@@ -4,7 +4,7 @@ namespace App\Services\Tenant;
 
 use App\Models\System\Company;
 use App\Models\Tenant\PaymentTerm;
-use App\Models\Tenant\Tax;
+use App\\Modules\\Tax\\Models\\Tax;
 use Illuminate\Support\Facades\DB;
 
 class TenantService
@@ -59,4 +59,5 @@ class TenantService
         });
     }
 }
+
 
