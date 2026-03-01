@@ -32,7 +32,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Onfacturation
-      MYSQL_USER: Onsoft
+      MYSQL_USER: onsoft
       MYSQL_PASSWORD: 2026@onsoft
     volumes:
       - mysqldata:/var/lib/mysql
