@@ -47,7 +47,7 @@ class AuthService
                 ];
             }
 
-            $user = auth('api')->user();
+            $user = JWTAuth::user();
 
             return [
                 'success' => true,

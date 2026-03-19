@@ -224,7 +224,7 @@ class NomeController extends Controller
 use Illuminate\Support\Facades\Route;
 use App\Modules\NomeModulo\Controllers\NomeController;
 
-Route::middleware(['auth:sanctum', 'tenant.isolation'])->prefix('v1')->group(function (): void {
+Route::middleware(['auth:api', 'tenant.isolation'])->prefix('v1')->group(function (): void {
     Route::apiResource('recursos', NomeController::class);
     // Route::post('recursos/{recurso}/custom', [NomeController::class, 'custom']);
 });
